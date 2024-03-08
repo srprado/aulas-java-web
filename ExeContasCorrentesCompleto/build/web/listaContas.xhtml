@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="content">
+        <h:form>
+            <center><h1>Lista de contas correntes</h1></center>
+            <p:dataTable id="tabelaContas" var="item" value="#{contaCorrenteController.contas}">
+
+                <p:column headerText="Número da conta">
+                    <h:outputText value="#{item.numeroConta}" />
+                </p:column>
+                <p:column headerText="Login">
+                    <h:outputText value="#{item.login}" />
+                </p:column>
+                <p:column headerText="Saldo">
+                    <h:outputText value="#{item.saldo}" />
+                </p:column>
+                <p:column headerText="Operações">
+                    <p:commandButton value="Sacar" action="#{contaCorrenteController.paginaSacar(item)}" style="margin-right: 5px"/>   
+                    <p:commandButton value="Depositar" action="#{contaCorrenteController.paginaDepositar(item)}"/> 
+                </p:column>
+            </p:dataTable>
+            <p:poll interval="2" update="tabelaContas"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
