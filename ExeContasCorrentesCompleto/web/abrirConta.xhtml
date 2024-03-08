@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="content">
+        <h:form>
+            <h1>Criar conta</h1>
+            <p:panelGrid columns="2">
+                <p:outputLabel for="numero" value="Número da conta"/>
+                <p:inputText id="numero" value="#{contaCorrenteController.conta.numeroConta}" required="true" requiredMessage="Digite o número da conta"/>
+
+                <p:outputLabel for="login" value="Login"/>
+                <p:inputText id="login" value="#{contaCorrenteController.conta.login}" required="true" requiredMessage="Digite um login para a conta"/>
+                
+                <p:outputLabel for="senha" value="Senha"/>
+                <p:password id="senha" value="#{contaCorrenteController.conta.senha}" toggleMask="true" redisplay="true"
+                            required="true" requiredMessage="Digite uma senha para a conta"/>
+                
+                <p:outputLabel for="valorInicial" value="Valor inicial"/>
+                <p:inputNumber id="valorInicial" value="#{contaCorrenteController.conta.saldo}"
+                               required="true" requiredMessage="Deposite um valor inicial"/>                
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cadastrar"
+                                     action="#{contaCorrenteController.cadastrarConta}" />                 
+                </f:facet> 
+            </p:panelGrid>
+        </h:form>        
+    </ui:define>
+</ui:composition>
