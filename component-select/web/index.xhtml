@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="jakarta.faces.core"
+                xmlns:h="jakarta.faces.html">
+
+    <ui:define name="content">
+
+        <h:form>
+            <h2>Componenente Select</h2>
+            <p:panelGrid columns="2">
+                <p:outputLabel for="@next" value="Números"/>
+                <p:selectOneMenu id="longItemLabel" 
+                                 value="#{selectOneMenuController.valor}">
+
+                    <f:selectItem itemLabel="Zero" itemValue="0"/>
+                    <f:selectItem itemLabel="One" itemValue="1"/>
+                    <f:selectItem itemLabel="Two" itemValue="2"/>
+                    <f:selectItem itemLabel="Three" itemValue="3"/>
+                    <f:selectItem itemLabel="Four" itemValue="4"/>
+                    <f:selectItem itemLabel="Five" itemValue="5"/>
+                    <f:selectItem itemLabel="Six" itemValue="6"/>
+                    <f:selectItem itemLabel="Seven" itemValue="7"/>
+                    <f:selectItem itemLabel="Long item here not necessary in the end" itemValue="99"/>
+                    <f:selectItem itemLabel="Eight" itemValue="8"/>
+                    <f:selectItem itemLabel="Nine" itemValue="9"/>
+                    <f:selectItem itemLabel="Ten and not more than ten " itemValue="10"/>
+                </p:selectOneMenu>
+                
+                <p:outputLabel for="country" value="Country: "/>
+                <p:selectOneMenu id="country" value="#{selectOneMenuController.country}" style="width:150px">
+                    <p:ajax listener="#{selectOneMenuController.onCountryChange}" update="city"/>
+                    <f:selectItem itemLabel="Selecione..." 
+                                  itemValue="" 
+                                  noSelectionOption="true"/>
+                    <f:selectItems value="#{selectOneMenuController.countries}"/>
+                </p:selectOneMenu>
+                
+                <p:outputLabel for="city" value="City: "/>
+                <p:selectOneMenu id="city" value="#{selectOneMenuController.city}" style="width:150px">
+                    <f:selectItem itemLabel="Selecione..." 
+                                  itemValue="" noSelectionOption="true"/>
+                    <f:selectItems value="#{selectOneMenuController.cities}"/>
+                </p:selectOneMenu>
+
+                
+            </p:panelGrid>
+
+            <p:commandButton value="Enviar"
+                             action="#{selectOneMenuController.mostrar}" update="growl"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
