@@ -60,12 +60,20 @@ public class contaCorrenteController implements Serializable{
         return null;
     }
     
-    public String realizarDeposito(){
-        if(this.contaSelecionada.getLogin().equals(loginComparacao) &&
-                this.contaSelecionada.getSenha().equals(senhaComparacao)){
-            this.contaSelecionada.setSaldo(this.contaSelecionada.getSaldo()+valor);
+    public String realizarDeposito() {
+        if (loginComparacao.equals("") || senhaComparacao.equals("")) {
+            Messages.addMessageWarning("Não pode haver campos vazios.Preencha-os");
+            return null;
         }
-        return "/listaContas.xhtml";
+        if (this.contaSelecionada.getLogin().equals(loginComparacao)
+                && this.contaSelecionada.getSenha().equals(senhaComparacao)) {
+            this.contaSelecionada.setSaldo(this.contaSelecionada.getSaldo() + valor);
+            Messages.addMessageSuccess("Depósito realizado.");
+            return "/listaContas.xhtml";
+        } else {
+            Messages.addMessageWarning("Senha e/ou Login errado!");
+            return null;
+        }
     }
       
 
