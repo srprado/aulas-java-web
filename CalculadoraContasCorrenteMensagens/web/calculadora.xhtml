@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+          
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets">
+    <h:head>
+        <title>Componentes JSF</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+                
+        <h:form>
+            
+            <p:menubar>
+                <p:submenu label="Escopos" icon="pi pi-align-justify">
+                    <p:menuitem value="Request" icon="pi pi-refresh" outcome="/index.xhtml"/>
+                    <p:menuitem value="Session" icon="pi pi-server" outcome="/produtos.xhtml"/>
+                    <!-- o action é usado quando, por exemplo, é necessaŕio fazer alguma validação -->
+                    <!--Página mensagens -->
+                    <p:menuitem value="Application" icon="pi pi-globe" action="#{mensagemController.iniciar}"/>                    
+                </p:submenu>
+                <p:submenu label="Exercícios" icon="pi pi-book">
+                    <p:menuitem value="Calculadora" outcome="/calculadora.xhtml"/>
+                    <p:submenu label="Conta Corrente">
+                        <p:menuitem value="Sacar" outcome="/contacorrente/sacar.xhtml"/>
+                        <p:menuitem value="Depositar" outcome="/contacorrente/depositar.xhtml"/>
+                        
+                    </p:submenu>
+                </p:submenu>                
+            </p:menubar>
+            
+            <h1>Calculadora</h1>
+            <p:panelGrid columns="2">
+                <p:outputLabel for="numero1" value="Número 1"/>
+                <p:inputNumber id="numero1" value="#{calculadoraController.numero1}"/>
+                
+                <p:outputLabel for="operador" value="Operador"/>
+                <p:inputText id="operador" value="#{calculadoraController.operacao}" placeholder=" "/>
+                
+                <p:outputLabel for="numero2" value="Número 2"/>
+                <p:inputNumber id="numero2" value="#{calculadoraController.numero2}"/>
+                
+                <p:outputLabel value=""/>
+                
+                <!-- o ui:remove é um meio de comentar o código, faz com que ele não seja renderizado na tela -->
+                <ui:remove>
+                <p:commandButton value="calcular"
+                                 action="#{calculadoraController.calcular}"
+                                 update="resultado"/>
+                
+                <p:row>
+                    Resultado: <p:outputLabel id="res Resultado:ultado" value="#{calculadoraController.resultado}"/>
+                </p:row>
+                </ui:remove>
+                
+                
+                
+                <p:row>
+            <p:column styleClass="ui-grid-col-12">
+                <p:commandButton value="#{calculadoraController.resultado}" styleClass="mr-2" style="width: auto"/>
+                
+            </p:column>
+        </p:row>
+                
+                <f:facet name="footer">
+                    <p:commandButton value="calcular"
+                                 action="#{calculadoraController.calcular}"
+                                 update="resultado"/>                 
+                </f:facet>
+                
+                
+                
+            </p:panelGrid>
+            <br/>
+            
+           
+            
+            
+            
+                       
+        </h:form>
+        
+    </h:body>
+</html>
