@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title>Componentes JSF</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h1>ADD mensagens</h1>        
+        <h:form>
+            
+            Mensagem: <p:inputText value="#{mensagemController.mensagem}"/>
+            <br />
+            <p:commandButton value="Adicionar mensagem" action="#{mensagemController.adicionar}" update="tabela"/>
+            <br/>
+            <p:dataTable id="tabela" var="item" value="#{mensagemController.mensagens}">
+                <p:column headerText="Mensagem">
+                    <h:outputText value="#{item}" />
+                </p:column>
+            </p:dataTable>  
+            
+            <!-- Esse comando atualiza o compontente indicada a cada 2 segundos
+                <p:poll interval="2" update="tabela"/>
+            -->
+            
+        </h:form>
+        
+    </h:body>
+</html>

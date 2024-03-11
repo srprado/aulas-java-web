@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title>Componentes JSF</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h1>Produtos</h1>        
+        <h:form>
+            
+            <p:menubar>
+                <p:submenu label="Escopos" icon="pi pi-align-justify">
+                    <p:menuitem value="Request" icon="pi pi-refresh" outcome="/index.xhtml"/>
+                    <p:menuitem value="Session" icon="pi pi-server" outcome="/produtos.xhtml"/>
+                    <!-- o action é usado quando, por exemplo, é necessaŕio fazer alguma validação -->
+                    <!--Página mensagens -->
+                    <p:menuitem value="Application" icon="pi pi-globe" action="#{mensagemController.iniciar}"/>                    
+                </p:submenu>
+                <p:submenu label="Exercícios" icon="pi pi-book">
+                    <p:menuitem value="Calculadora" outcome="/calculadora.xhtml"/>
+                    <p:submenu label="Conta Corrente">
+                        <p:menuitem value="Sacar" outcome="/contacorrente/sacar.xhtml"/>
+                        <p:menuitem value="Depositar" outcome="/contacorrente/depositar.xhtml"/>
+                        
+                    </p:submenu>
+                </p:submenu>                
+            </p:menubar
+            
+            Produto: <p:inputText value="#{produtoController.nomeproduto}"/>
+            <br />            
+            <p:commandButton value="Adicionar produto" action="#{produtoController.adicionar}" />
+            <br/>          
+        </h:form>
+        
+    </h:body>
+</html>
