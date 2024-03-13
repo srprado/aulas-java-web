@@ -26,11 +26,13 @@
                     <h:outputText value="#{item.saldo}"/>
                 </p:column>    
                 <!--
+                Para pegar o número da conta direto, usar essa parte 
                 <p:column headerText="Operações">
-                    <p:commandButton value="Sacar" action="#{contaCorrenteController.paginaSacar(item.numero)}" style="margin-right: 5px"/>   
-                        <p:commandButton value="Depositar" action="#{contaCorrenteController.paginaDepositar(item.numero)}"/> 
+                    <p:commandButton value="Sacar" action="#{contaController.paginaSacar(item)}" style="margin-right: 5px"/>   
+                    <p:commandButton value="Depositar" action="#{contaController.paginaDepositar(item)}"/> 
                 </p:column>
                 -->
+               
                 
             </p:dataTable>
             <p:poll interval="2" update="tabela"/>

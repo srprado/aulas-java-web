@@ -16,6 +16,7 @@ public class ContaController {
     
     private final Map<String, Conta> contas = new HashMap<>();
     private Conta contaCorrente = new Conta();
+    private Conta contaSelecionada;
     private BigDecimal valor;
     private String numero;
     private String loginComparacao;
@@ -28,7 +29,7 @@ public class ContaController {
             contaCorrente = new Conta();
             return "/contaCorrente/listarContas.xhtml";
         }else{
-            Messages.addMessageError("Conta corrente já existe");
+            Messages.addMessageError("Esse número de conta já existe");
         }        
         return null;        
     }
@@ -63,7 +64,40 @@ public class ContaController {
             Messages.addMessageError(ex.getMessage());
         }
         return null;
-    }    
+    } 
+    
+//    PARA PEGAR O NUMERO DA CONTA DIRETO, USAR ESSA PARTE
+//    public String depositar() {
+//        try {
+////            Conta conta = contas.get(numero);
+//            if (contaSelecionada.getNumero() != null) {
+//                contaSelecionada.depositar(valor, loginComparacao, senhaComparacao);
+//                this.limparCampos();
+//                Messages.addMessageSuccess("Depósito realizado.");
+//                return "/contaCorrente/listarContas.xhtml";                
+//            }
+//            Messages.addMessageError("Conta corrente não encontrada.");            
+//        } catch (Exception ex) {
+//            Messages.addMessageError(ex.getMessage());
+//        }
+//        return null;
+//    }
+//    
+//    public String Sacar(){
+//        try {
+////            Conta conta = contaSelecionada.getNumero();;;
+//            if (contaSelecionada.getNumero() != null) {
+//                contaSelecionada.sacar(valor, loginComparacao, senhaComparacao);
+//                this.limparCampos();
+//                Messages.addMessageSuccess("Saque realizado.");
+//                return "/contaCorrente/listarContas.xhtml";                
+//            }
+//            Messages.addMessageError("Conta corrente não encontrada.");            
+//        } catch (Exception ex) {
+//            Messages.addMessageError(ex.getMessage());
+//        }
+//        return null;
+//    }
     
     private void limparCampos() {
         this.numero = "";
@@ -71,6 +105,18 @@ public class ContaController {
         this.loginComparacao = "";
         this.senhaComparacao = "";
     }   
+       
+     public String paginaSacar(Conta conta){      
+        this.contaSelecionada = conta;
+        this.limparCampos();
+        return "/contaCorrente/sacar.xhtml";
+    }
+    
+    public String paginaDepositar(Conta conta){        
+        this.contaSelecionada = conta;
+        this.limparCampos();
+        return "/contaCorrente/depositar.xhtml";
+    }
 
     public Conta getContaCorrente() {
         return contaCorrente;
@@ -78,6 +124,14 @@ public class ContaController {
 
     public void setContaCorrente(Conta contaCorrente) {
         this.contaCorrente = contaCorrente;
+    }
+
+    public Conta getContaSelecionada() {
+        return contaSelecionada;
+    }
+
+    public void setContaSelecionada(Conta contaSelecionada) {
+        this.contaSelecionada = contaSelecionada;
     }
 
     public BigDecimal getValor() {
