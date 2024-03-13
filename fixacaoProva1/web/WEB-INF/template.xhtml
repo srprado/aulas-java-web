@@ -22,8 +22,11 @@
             <h:form>
                 <p:menubar>
                     <p:menuitem value="Index" icon="pi pi-list" outcome="/index.xhtml"/>
-                    <p:submenu label="SubMenus" icon="pi pi-plus">
-                        <p:menuitem value="Opção 1" outcome="/opcao1.xhtml"/>                    
+                    <p:submenu label="Conta Corrente" icon="pi pi-dollar">
+                        <p:menuitem value="Listar contas" icon="pi pi-list" outcome="/contaCorrente/listarContas.xhtml"/>
+                        <p:menuitem value="Cadastrar conta" icon="pi pi-credit-card" outcome="/contaCorrente/cadastrar.xhtml"/>
+                        <p:menuitem value="Sacar" icon="pi pi-minus" outcome="/contaCorrente/sacar.xhtml"/>
+                        <p:menuitem value="Depositar" icon="pi pi-plus" outcome="/contaCorrente/depositar.xhtml"/>
                     </p:submenu>
                 </p:menubar>
             </h:form>           
