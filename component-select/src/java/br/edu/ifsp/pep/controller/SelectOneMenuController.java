@@ -1,25 +1,39 @@
 package br.edu.ifsp.pep.controller;
 
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 @Named
-@RequestScoped
-public class SelectOneMenuController {
+//escopo intermediário, entre o RequestScoped e SessionScoped - ele serve para requisições ajax, já que mantém o objeto mesmo fazendo as requisições ajax
+//Só troca o objeto quando executa o projeto de novo ou da F5 na página
+@ViewScoped
+public class SelectOneMenuController implements Serializable{
 
     private int valor;//valor selecionado.
     private String country;//país selecionado.
-    private String city;//cidade selecionada.
+    private String city;//cidade selecionada (componente SelectOneMenu).
     private Map<String, String> countries;
     private Map<String, String> cities;
     private Map<String, Map<String, String>> data = new HashMap<>();
+//    private String citySelected;//Data table
 
     public void mostrar() {
-        System.out.println(valor);
+        System.out.println("valor: "+valor);
+        System.out.println("País:"+country);
+        System.out.println("Cidade:"+city);                
     }
 
+    public void teste() {
+        System.out.println("Teste...");
+        System.out.println("valor: "+valor);
+        System.out.println("País:"+country);
+        System.out.println("Cidade:"+city);                
+    }
+    
     public SelectOneMenuController() {
         countries = new HashMap<>();
         countries.put("USA", "USA");
@@ -45,7 +59,17 @@ public class SelectOneMenuController {
         data.put("Brazil", map);
 
     }
-
+    
+    public void atualizarCidades(){
+        System.out.println("atualizar cidades...");
+        System.out.println(country);
+        if(countries!=null && !countries.isEmpty()){
+            this.cities = data.get(country);
+        }else{
+            this.cities = null;          
+        }
+    } 
+    
     public void onCountryChange() {
         if (country != null && !"".equals(country)) {
             cities = data.get(country);
