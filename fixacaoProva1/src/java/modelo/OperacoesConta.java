@@ -8,6 +8,7 @@ public class OperacoesConta {
     private LocalDateTime data;
     private BigDecimal valor;
     private String tipo;
+    private String numeroConta;
 
     public OperacoesConta(BigDecimal valor, String tipo) {
         this.data = LocalDateTime.now();
@@ -37,5 +38,14 @@ public class OperacoesConta {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }   
+    }
+
+    public String getNumeroConta() {
+        return numeroConta;
+    }
+
+    public void setNumeroConta(String numeroConta) {
+        this.numeroConta = numeroConta;
+    }
+
 }
