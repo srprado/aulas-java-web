@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="content">
+        <h:form>
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+            <p:dataTable id="tabela" var="item" value="#{vendaController.vendas}">
+                <f:facet name="header">
+                    Lista de cursos
+                </f:facet>
+
+                <p:column headerText="Código">
+                    <h:outputText value="#{item.codigo}" />
+                </p:column>
+                <p:column headerText="Curso">
+                    <h:outputText value="#{item.curso}" />
+                </p:column>
+                <p:column headerText="Valor">
+                    <h:outputText value="#{item.valor}" />
+                </p:column>
+            </p:dataTable>
+
+            <p:panelGrid columns="2">
+                <p:outputLabel for="@next" value="Desconto" />
+                <p:selectOneMenu id="descontos" value="#{vendaController.desconto}">
+                    <p:ajax update="valorTotal"/>
+                    <f:selectItem itemLabel="Selecione" itemValue=""/>
+                    <f:selectItem itemLabel="5%" itemValue="5"/>
+                    <f:selectItem itemLabel="10%" itemValue="10"/>
+                    <f:selectItem itemLabel="15%" itemValue="15"/>
+                </p:selectOneMenu>
+            </p:panelGrid>
+            <br/><br/>
+            <h:outputLabel id="Total" value="Total:  "/> 
+            <h:outputLabel id="valorTotal" value="#{vendaController.getValorComDesconto()}"/>
+            
+            <br/><br/>
+            
+            <p:commandButton value="Finalizar" immediate="true" 
+                             action="#{vendaController.finalizar}"
+                             update="growl"
+                             />
+        </h:form>
+    </ui:define>
+
+</ui:composition>
