@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h1>Operações de conta</h1>
+        <h:form>
+            <p:dataTable id="tabela" var="conta" value="#{contaController.opContas}">
+                <p:column headerText="Número da conta">
+                    <h:outputText value="#{conta.key}"/>
+                </p:column>
+
+                <p:column headerText="Operações">
+                    <p:dataTable var="operacao" value="#{conta.value}">
+                        <p:column headerText="Operação">
+                            <h:outputText value="#{operacao.tipo}"/>
+                        </p:column>
+
+                        <p:column headerText="Data">
+                            <h:outputText value="#{operacao.data}"/>
+                        </p:column>
+
+                        <p:column headerText="Valor">
+                            <h:outputText value="#{operacao.valor}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:column>
+            </p:dataTable>
+            <!--<p:poll interval="2" update="tabela"/>-->
+        </h:form>
+    </ui:define>
+
+</ui:composition>

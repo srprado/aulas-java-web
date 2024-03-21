@@ -5,16 +5,20 @@ import br.edu.ifsp.pep.util.Messages;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import modelo.Conta;
+import modelo.OperacoesConta;
 
 @Named
 @ApplicationScoped
 public class ContaController {
     
     private final Map<String, Conta> contas = new HashMap<>();
+    private final Map<String, List<OperacoesConta>> opContas = new HashMap<>();
     private Conta contaCorrente = new Conta();
     private Conta contaSelecionada;
     private BigDecimal valor;
@@ -39,6 +43,16 @@ public class ContaController {
             Conta conta = contas.get(numero);
             if (conta != null) {
                 conta.depositar(valor, loginComparacao, senhaComparacao);
+                
+                // Registrar a operação de depósito
+                OperacoesConta operacao = new OperacoesConta(valor, "Depósito");
+                operacao.setNumeroConta(numero);
+                
+                // Verificar se já existe uma lista de operações para esta conta
+                List<OperacoesConta> operacoes = opContas.getOrDefault(numero, new ArrayList<>());
+                operacoes.add(operacao);
+                opContas.put(numero, operacoes);
+                
                 this.limparCampos();
                 Messages.addMessageSuccess("Depósito realizado.");
                 return "/contaCorrente/listarContas.xhtml";                
@@ -55,8 +69,19 @@ public class ContaController {
             Conta conta = contas.get(numero);
             if (conta != null) {
                 conta.sacar(valor, loginComparacao, senhaComparacao);
+                
+                // Registrar a operação de depósito
+                OperacoesConta operacao = new OperacoesConta(valor, "Saque");
+                operacao.setNumeroConta(numero);
+                
+                // Verificar se já existe uma lista de operações para esta conta
+                List<OperacoesConta> operacoes = opContas.getOrDefault(numero, new ArrayList<>());
+                operacoes.add(operacao);
+                opContas.put(numero, operacoes);
+                
                 this.limparCampos();
                 Messages.addMessageSuccess("Saque realizado.");
+                
                 return "/contaCorrente/listarContas.xhtml";                
             }
             Messages.addMessageError("Conta corrente não encontrada.");            
@@ -66,6 +91,19 @@ public class ContaController {
         return null;
     } 
     
+    public void listarOperacoes() {
+        if (numero != null && !numero.isEmpty()) {
+            List<OperacoesConta> operacoesDaConta = opContas.get(numero);
+            if (operacoesDaConta != null) {
+                // Atualizar a lista de operações apenas para a conta específica
+                opContas.put(numero, operacoesDaConta);
+            } else {
+                // Se não houver operações para a conta especificada, remover a entrada do mapa
+                opContas.remove(numero);
+            }
+        }
+    }
+
 //    PARA PEGAR O NUMERO DA CONTA DIRETO, USAR ESSA PARTE
 //    public String depositar() {
 //        try {
@@ -168,5 +206,16 @@ public class ContaController {
     
     public Collection<Conta> getContas() {
         return contas.values();
-    }    
+    }   
+
+    public Map<String, List<OperacoesConta>> getOpContas() {
+        return opContas;
+    }
+
+    
+    
+    
+    
+    
+   
 }
