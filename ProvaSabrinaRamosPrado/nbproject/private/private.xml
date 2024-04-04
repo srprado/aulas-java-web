@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/aluno/aulaFP2/aulas-java-web/ProvaSabrinaRamosPrado/web/pagamento.xhtml</file>
-            <file>file:/home/aluno/aulaFP2/aulas-java-web/ProvaSabrinaRamosPrado/src/java/br/edu/ifsp/controller/vendaController.java</file>
-            <file>file:/home/aluno/aulaFP2/aulas-java-web/ProvaSabrinaRamosPrado/web/venda.xhtml</file>
-            <file>file:/home/aluno/aulaFP2/aulas-java-web/ProvaSabrinaRamosPrado/src/java/br/edu/ifsp/modelo/Venda.java</file>
+            <file>file:/home/aluno/controle-versoes/ProvaSabrinaRamosPrado/src/java/br/edu/ifsp/controller/VendaController.java</file>
+            <file>file:/home/aluno/controle-versoes/ProvaSabrinaRamosPrado/src/java/br/edu/ifsp/modelo/Venda.java</file>
+            <file>file:/home/aluno/controle-versoes/ProvaSabrinaRamosPrado/web/pagamento.xhtml</file>
+            <file>file:/home/aluno/controle-versoes/ProvaSabrinaRamosPrado/web/venda.xhtml</file>
         </group>
     </open-files>
 </project-private>
