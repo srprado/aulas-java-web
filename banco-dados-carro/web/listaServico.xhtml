@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="content">
+        <h:form>
+             <h1>Serviços</h1>
+             <p:dataTable id="tabela" var="item" value="#{servicoController.listar()}">
+
+                <p:column headerText="Carro">
+                    <h:outputText value="#{item.carro.placa}" />
+                </p:column>
+                 
+                <p:column headerText="Data">
+                    <h:outputText value="#{item.data}" />
+                </p:column>
+                                
+                <p:column headerText="Descrição">
+                    <h:outputText value="#{item.descricao}" />
+                </p:column>
+                 
+                <p:column headerText="Valor">
+                    <h:outputText value="#{item.valor}" />
+                </p:column>
+                
+            </p:dataTable>
+            <p:poll interval="2" update="tabela"/>
+           
+        </h:form>
+    </ui:define>
+
+</ui:composition>

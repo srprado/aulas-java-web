@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="content">
+        <h:form>
+            <p:panelGrid columns="2">
+                <p:outputLabel for="@next" value="Placa"/>
+                <p:selectOneMenu id="placaCarro" value="#{servicoController.servico.carro}" style="width:150px">                    
+                    <f:selectItem itemLabel="Selecione..." 
+                                  itemValue="" 
+                                  noSelectionOption="true"/>
+                    <f:selectItems value="#{carroController.listar()}"
+                                   var="item" itemLabel="#{item.placa}"
+                                   itemValue="#{item}"/>
+                </p:selectOneMenu>
+                
+                <p:outputLabel for="@next" value="Data" />
+                <p:datePicker id="data" value="#{servicoController.servico.data}"/>   
+                
+                <p:outputLabel for="@next" value="Descrição"/>
+                <p:inputTextarea id="descricao" value="#{servicoController.servico.descricao}" required="true" requiredMessage="Insira a descrição do serviço."/>    
+                
+                <p:outputLabel for="@next" value="Valor "/>
+                <p:inputNumber id="valor" value="#{servicoController.servico.valor}" required="true" requiredMessage="Informe o valor do serviço."/>    
+            </p:panelGrid>
+
+            <p:commandButton value="Cadastrar" action="#{servicoController.cadastrar()}" update="growl"/>
+           
+        </h:form>
+    </ui:define>
+
+</ui:composition>
