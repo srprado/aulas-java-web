@@ -25,9 +25,15 @@
               xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_4_0.xsd">
 
     
-     <lifecycle>
+    <lifecycle>
         <phase-listener>
             br.edu.ifsp.pep.listener.Autorizacao
         </phase-listener>
     </lifecycle>
+    
+    <application>
+        <message-bundle>
+            br.edu.ifsp.resources.Messages
+        </message-bundle>
+    </application>
 </faces-config>

@@ -7,10 +7,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -27,12 +31,16 @@ public class Servico implements Serializable{
     @Column(name = "id")
     private Integer id;
     
-    @Column(name = "descricao", nullable = false, length = 50, unique = true)
+    @Lob
+    @NotBlank//Verifica tem espaço em branco. Tem que ter caracter que não seja espaço em branco.
+    @Size(min = 10, max = 256)//Definir tamanho mínimo e máximo de caracteres
+    @Column(name = "descricao", nullable = false)
     private String descricao;
     
     @Column(name = "data", nullable = false)
     private LocalDate data;
     
+    @DecimalMin(value = "1")
     @Column(name = "valor", nullable = false, precision = 8, scale = 2)
     private BigDecimal valor;
     

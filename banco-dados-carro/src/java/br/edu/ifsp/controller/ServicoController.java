@@ -6,7 +6,6 @@ import br.edu.ifsp.pep.util.Messages;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import java.util.ArrayList;
 import java.util.List;
 
 @Named

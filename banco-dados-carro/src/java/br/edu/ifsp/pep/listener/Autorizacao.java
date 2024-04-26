@@ -43,18 +43,18 @@ public class Autorizacao implements PhaseListener{
     public void afterPhase(PhaseEvent event) {
         System.out.println("After: " + event.getPhaseId());
        
-        FacesContext ctx = event.getFacesContext();
-        String pagina = ctx.getViewRoot().getViewId();
-        System.out.println(pagina);
-        //Validação
-        Pessoa pessoaAutenticada = pessoaController.getPessoaLogada();
+//        FacesContext ctx = event.getFacesContext();
+//        String pagina = ctx.getViewRoot().getViewId();
+//        System.out.println(pagina);
+//        //Validação
+//        Pessoa pessoaAutenticada = pessoaController.getPessoaLogada();
         //login público
         
-        if((pagina.startsWith("/cadCarro.xhtml") || pagina.startsWith("/cadServico.xhtml") || pagina.startsWith("/listaServico.xhtml")) 
-                && pessoaAutenticada==null){
-            redirecionar(ctx, "/acesso-negado.xhtml");         
-            
-        }
+//        if((pagina.startsWith("/cadCarro.xhtml") || pagina.startsWith("/cadServico.xhtml") || pagina.startsWith("/listaServico.xhtml")) 
+//                && pessoaAutenticada==null){
+//            redirecionar(ctx, "/acesso-negado.xhtml");         
+//            
+//        }
 //        else if(pagina.startsWith("/cadCarro.xhtml") && (pessoaAutenticada==null)){
 //            redirecionar(ctx, "/acesso-negado.xhtml");
 //        }
