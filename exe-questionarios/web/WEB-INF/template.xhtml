@@ -9,7 +9,7 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>
-            <ui:insert name="titulo">Atividade Avaliativa1</ui:insert>
+            <ui:insert name="titulo">Atividade</ui:insert>
         </title>
     </h:head>
 
@@ -22,16 +22,19 @@
         <ui:insert name="top">
             <h:form>
                 <p:menubar>
-                    <p:menuitem value="Login" icon="pi pi-user" outcome="/login.xhtml"/>
-                    <p:menuitem value="Home" icon="pi pi-bookmark" outcome="/index.xhtml"/>
-                    <p:menuitem value="Carro" icon="pi pi-car" outcome="/cadCarro.xhtml"/>
-                     <p:submenu label="Serviço" icon="pi pi-book">
-                        <p:menuitem value="Cadastrar" icon="pi pi-check-square" outcome="/cadServico.xhtml"/>
-                        <p:menuitem value="Listar" icon="pi pi-list" outcome="/listaServico.xhtml"/>                            
-                    </p:submenu> 
-                    <p:menuitem value="Desconectar"  action="#{pessoaController.desconectar()}"
-                                update="@all"/>
+                    <p:menuitem value="Home" icon="pi pi-home" outcome="/index.xhtml"/>
+                    <p:menuitem value="Login" icon="pi pi-sign-in" outcome="/login.xhtml"/>
+                    <p:submenu label="Questionários" icon="pi pi-book">
+                        <p:menuitem value="Questionário 1" outcome="/questionario1.xhtml"/>
+                        <p:menuitem value="Questionário 2" outcome="/questionario2.xhtml"/>
+                        <p:menuitem value="Questionário 3" outcome="/questionario3.xhtml"/>
+                    </p:submenu>
                     
+                    <p:menuitem value="Cadastro" icon="pi pi-user-plus" outcome="/administrador/cadPessoas.xhtml"/>
+                    <p:menuitem value="Análises" icon="pi pi-chart-bar" outcome="/administrador/analises.xhtml"/> 
+                     <p:menuitem value="Desconectar" action="#{pessoaController.desconectar()}" icon="pi pi-sign-out"
+                                update="@all"/>   
+                         
                     <f:facet name="options">
                         <h:outputText value="#{pessoaController.pessoaLogada.nome}"/>
                     </f:facet>
