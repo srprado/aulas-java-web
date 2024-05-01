@@ -1,16 +1,18 @@
 
 package br.edu.ifsp.pep.modelo;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import java.util.List;
+import java.util.Objects;
 
 
 @Entity
@@ -18,13 +20,12 @@ import jakarta.validation.constraints.Size;
 public class Pessoa {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codigo")
-    private int codigo;
+    @Column(name = "cpf", length = 14, nullable = false)
+    private String cpf;
     
     @Column(name = "nome", length = 50, nullable = false)
     private String nome;
-    
+        
     @Column(name = "login", length = 20, nullable = false)
     private String login;
     
@@ -36,24 +37,32 @@ public class Pessoa {
     @Enumerated(EnumType.STRING)
     @Column(name = "nivel_acesso", length = 15, nullable = false)
     private NivelAcesso nivel_acesso;
-
+    
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    private List<Resposta> respostas;
+    
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String login, String senha, NivelAcesso nivel_acesso) {
+    public Pessoa(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Pessoa(String cpf, String nome, String login, String senha, NivelAcesso nivel_acesso) {
+        this.cpf = cpf;
         this.nome = nome;
         this.login = login;
         this.senha = senha;
         this.nivel_acesso = nivel_acesso;
-    }   
-
-    public int getCodigo() {
-        return codigo;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public String getCpf() {
+        return cpf;
     }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }    
 
     public String getNome() {
         return nome;
@@ -87,10 +96,18 @@ public class Pessoa {
         this.nivel_acesso = nivel_acesso;
     }
 
+    public List<Resposta> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
+    }
+    
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 19 * hash + this.codigo;
+        int hash = 5;
+        hash = 79 * hash + Objects.hashCode(this.cpf);
         return hash;
     }
 
@@ -106,10 +123,6 @@ public class Pessoa {
             return false;
         }
         final Pessoa other = (Pessoa) obj;
-        return this.codigo == other.codigo;
-    }
-    
-    
-    
-    
+        return Objects.equals(this.cpf, other.cpf);
+    }     
 }

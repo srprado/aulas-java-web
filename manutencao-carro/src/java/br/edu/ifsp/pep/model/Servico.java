@@ -14,10 +14,6 @@ import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-/**
- *
- * @author aluno
- */
 @Entity
 @Table(name = "servico")
 @NamedQueries(@NamedQuery(name = "Servico.findAll", query = "FROM Servico s"))
@@ -81,5 +77,4 @@ public class Servico implements Serializable {
     public void setCarro(Carro carro) {
         this.carro = carro;
     }
-
 }

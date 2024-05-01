@@ -30,4 +30,12 @@
             br.edu.ifsp.pep.listener.Autorizacao
         </phase-listener>
     </lifecycle>
+    
+   <!-- <application>
+        <message-bundle>
+            br.edu.ifsp.resources.Messages
+        </message-bundle>
+    </application>
+    -->
+    
 </faces-config>
