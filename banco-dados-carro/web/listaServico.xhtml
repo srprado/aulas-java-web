@@ -10,7 +10,11 @@
     <ui:define name="content">
         <h:form>
              <h1>Serviços</h1>
-             <p:dataTable id="tabela" var="item" value="#{servicoController.listar()}">
+             <p:dataTable id="tabela" var="item" value="#{servicoController.listar()}"
+                          widgetVar="tabela_servicos"
+                          rowKey="#{item.id}" selection="#{servicoController.servicoSelecionado}"
+                          selectionMode="single" paginator="true"
+                          paginatorPosition="bottom" rows="10">
 
                 <p:column headerText="Carro">
                     <h:outputText value="#{item.carro.placa}" />
@@ -18,6 +22,15 @@
                  
                 <p:column headerText="Data">
                     <h:outputText value="#{item.data}" />
+                </p:column>
+                <!--outro campo de data para mostrar como funciona o filtro--> 
+                <p:column field="data" headerText="Data" filterMatchMode="between">
+                    <f:facet name="filter">
+                        <p:datePicker selectionMode="range" onchange="PF('tabela_servicos').filter()"/>
+                    </f:facet>
+                    <h:outputText value="#{item.data}">
+                        <f:convertDateTime type="localDate" pattern="dd/MM/yyyy"/>
+                    </h:outputText>
                 </p:column>
                                 
                 <p:column headerText="Descrição">

@@ -16,6 +16,7 @@ public class ServicoController {
     @Inject
     private  ServicoDAO servicoDao;
     private Servico servico = new Servico();
+    private Servico servicoSelecionado;
           
     public ServicoController() {
                      
@@ -38,6 +39,22 @@ public class ServicoController {
     public List<Servico> listar(){
         return servicoDao.findAll();
     }
+    
+     public void excluir() {
+
+        if (servicoSelecionado == null) {
+            Messages.addMessageWarning("Selecione um serviço para exclusão!");
+        } else {
+            try {
+                System.out.println(servicoSelecionado);
+                servicoDao.excluir(servicoSelecionado);
+                Messages.addMessageSuccess("Serviço Excluído!");
+            } catch (Exception e) {
+                Messages.addMessageError(e.getCause().getMessage());
+            }
+        }
+
+    }
 
     public Servico getServico() {
         return servico;
@@ -46,5 +63,15 @@ public class ServicoController {
     public void setServico(Servico servico) {
         this.servico = servico;
     }
+
+    public Servico getServicoSelecionado() {
+        return servicoSelecionado;
+    }
+
+    public void setServicoSelecionado(Servico servicoSelecionado) {
+        this.servicoSelecionado = servicoSelecionado;
+    }
+    
+    
 
 }

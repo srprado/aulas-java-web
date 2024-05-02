@@ -7,6 +7,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Named
 @RequestScoped
@@ -35,7 +36,16 @@ public class CarroController {
         return carroDAO.findAll();    
    
     }
-
+    
+    public List<Carro> completeText(String query){
+        List<Carro> carros = carroDAO.findAll();
+        String queryLowerCase = query.toLowerCase();
+        
+        return carros.stream()
+                .filter(c -> c.getPlaca().toLowerCase().startsWith(queryLowerCase))
+                .collect(Collectors.toList());
+    }
+    
     public Carro getCarro() {
         return carro;
     }

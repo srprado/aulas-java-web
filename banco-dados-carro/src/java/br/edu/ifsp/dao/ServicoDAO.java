@@ -22,4 +22,8 @@ public class ServicoDAO {
                 .getResultList();
     }
     
+    public void excluir(Servico servico){
+        em.remove(em.merge(servico));
+    }
+    
 }

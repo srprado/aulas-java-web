@@ -20,6 +20,11 @@
                                    itemValue="#{item}"/>
                 </p:selectOneMenu>
                 
+                <p:outputLabel for="@next" value="AutoComplete Carro"/>
+                <p:autoComplete id="acSimple" value="#{servicoController.servico.carro}"
+                                completeMethod="#{carroController.completeText}" scrollHeight="250"
+                                var="carro" itemLabel="#{carro.placa}" itemValue="#{carro}"/>
+              
                 <p:outputLabel for="@next" value="Data" />
                 <p:datePicker id="data" value="#{servicoController.servico.data}"/>   
                 
