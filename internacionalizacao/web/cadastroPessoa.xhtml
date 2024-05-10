@@ -8,17 +8,26 @@
     <h:body>
         <ui:composition template="/WEB-INF/template.xhtml">
             <ui:define name="content">
+                <h1>Cadastro de Pessoa</h1>
                 <h:form>
                     <p:panelGrid columns="2">
-                        <p:outputLabel for="@next" value="Login" />
-                        <p:inputText value="#{pessoaController.pessoa.login}" 
-                                     required="true" requiredMessage="Informe o Login."/>
+                        <p:outputLabel for="@next" value="Usuário" />
+                        <p:inputText value="#{pessoaController.pessoa.nome}" 
+                                     required="true" requiredMessage="Informe o nome."/>
 
                         <p:outputLabel for="@next" value="Senha" />
+                        <p:password value="#{pessoaController.pessoa.login}"
+                                    required="true" requiredMessage="Informe a Login."/>                        
+                        
+                        <p:outputLabel for="@next" value="Senha" />
                         <p:password value="#{pessoaController.pessoa.senha}"
-                                    required="true" requiredMessage="Informe a Senha."/>
+                                    required="true" requiredMessage="Informe a Senha."/>                        
+                        
+                        <p:outputLabel for="@next" value="Senha" />
+                        <p:password value="#{pessoaController.pessoa.nivelAcesso}"
+                                    required="true" requiredMessage="Informe o nível de acesso."/>
                     </p:panelGrid>
-                    <p:commandButton value="Acessar" action="#{pessoaController.login()}" 
+                    <p:commandButton value="Acessar" action="#{pessoaController.cadastrar()}" 
                                      update="growl"/>
                 </h:form>
             </ui:define>

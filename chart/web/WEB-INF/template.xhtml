@@ -22,15 +22,13 @@
         <ui:insert name="top">
             <h:form>
                 <p:menubar>
-                    <p:menuitem value="Login" icon="pi pi-user" outcome="/login.xhtml"/>
                     <p:menuitem value="Home" icon="pi pi-bookmark" outcome="/index.xhtml"/>
                     <p:menuitem value="Carro" icon="pi pi-car" outcome="/cadCarro.xhtml"/>
                      <p:submenu label="Serviço" icon="pi pi-book">
                         <p:menuitem value="Cadastrar" icon="pi pi-check-square" outcome="/cadServico.xhtml"/>
                         <p:menuitem value="Listar" icon="pi pi-list" outcome="/listaServico.xhtml"/>                            
                     </p:submenu> 
-                    <p:menuitem value="Desconectar"  action="#{pessoaController.desconectar()}"
-                                update="@all"/>
+                    <p:menuitem value="Charts" icon="pi pi-bookmark" outcome="/chart.xhtml"/>
                     
                     <f:facet name="options">
                         <h:outputText value="#{pessoaController.pessoaLogada.nome}"/>

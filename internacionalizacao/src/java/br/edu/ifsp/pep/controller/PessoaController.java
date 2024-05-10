@@ -39,6 +39,18 @@ public class PessoaController implements Serializable {
         this.pessoaLogada = null;
         this.pessoa = new Pessoa();
     }
+    
+    public void cadastrar(){
+        System.out.println("Método cadastrar");
+        try {
+            pessoaDAO.cadastrar(pessoa);            
+            Messages.addMessageSuccess("Pessoa cadastrada!");
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Messages.addMessageError("Erro ao cadastrar no banco de dados");
+        }
+    }
 
     public Pessoa getPessoaLogada() {
         return pessoaLogada;

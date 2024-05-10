@@ -34,7 +34,7 @@ public class Autorizacao implements PhaseListener {
         } else if (pessoaLogada != null 
                 && !pagina.startsWith("acesso-negado.xhtml")
                 && !paginaAcessoDao.podeAcessar(pessoaLogada.getNivelAcesso(), pagina)) {
-            redirecionar(ctx, "/acesso-negado.xhtml");
+            redirecionar(ctx,"/acesso-negado.xhtml");
         }
 
         //FORMA ESTÀTICA

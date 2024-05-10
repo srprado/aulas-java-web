@@ -26,9 +26,18 @@
 
     <lifecycle>
         <phase-listener>
-            br.edu.ifsp.pep.listener.Autorizacao
+            br.edu.ifsp.pep.listener.internacionalizacao.Autorizacao
         </phase-listener>
     </lifecycle>
     
+    
+    <application>
+        <resource-bundle>
+            <base-name>
+                br.edu.ifsp.pep.mensagens.messages
+            </base-name>
+            <var>bundle</var>
+        </resource-bundle>
+    </application>
     
 </faces-config>

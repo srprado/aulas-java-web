@@ -27,7 +27,7 @@
     
     <lifecycle>
         <phase-listener>
-            br.edu.ifsp.pep.listener.Autorizacao
+         
         </phase-listener>
     </lifecycle>
     
