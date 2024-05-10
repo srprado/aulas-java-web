@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="jakarta.faces.html">
+
+    <ui:define name="content">
+        <h:form>
+            <p:panelGrid columns="2">
+                <p:outputLabel for="@next" value="Placa "/>
+                <p:inputText id="placa" value="#{carroController.carro.placa}" required="true" requiredMessage="Informe a placa do carro."/>    
+                
+                <p:outputLabel for="@next" value="Cor"/>
+                <p:inputText id="cor" value="#{carroController.carro.cor}" required="true" requiredMessage="Informe a cor do carro."/>    
+                
+                <p:outputLabel for="@next" value="Modelo "/>
+                <p:inputText id="nome" value="#{carroController.carro.nome}" required="true" requiredMessage="Informe o modelo do carro."/>    
+                
+            </p:panelGrid>
+
+            <p:commandButton value="Cadastrar" action="#{carroController.cadastrar()}" update="growl"/>
+           
+        </h:form>
+    </ui:define>
+
+</ui:composition>
