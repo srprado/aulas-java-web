@@ -25,7 +25,6 @@ import org.primefaces.model.charts.optionconfig.title.Title;
 public class ChartController {
     
     private BarChartModel barModel;
-    private BarChartModel barModel2;
 
     @PostConstruct
     public void init(){
@@ -36,6 +35,7 @@ public class ChartController {
     public void createBarModel() {
         barModel = new BarChartModel();
         ChartData data = new ChartData();
+        
         BarChartDataSet barDataSet = new BarChartDataSet();
         barDataSet.setLabel("Cartão de crédito");
         
@@ -43,7 +43,7 @@ public class ChartController {
         BarChartDataSet barDataSet2 = new BarChartDataSet();
         barDataSet2.setLabel("Mercado");
 
-//        eixo y
+//        Eixo y barDataSet
         List<Number> values = new ArrayList<>();
         values.add(65);
         values.add(59);
@@ -53,19 +53,7 @@ public class ChartController {
         values.add(55);
         values.add(40);
         barDataSet.setData(values);
-       
-//        eixo x
-        List<String> labels = new ArrayList<>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("June");
-        labels.add("July");
-        data.setLabels(labels);
-        barModel.setData(data);
-       
+              
         //barra 1
         List<String> bgColor = new ArrayList<>();
         bgColor.add("rgba(255, 99, 132, 0.2)");
@@ -76,7 +64,7 @@ public class ChartController {
         bgColor.add("rgba(255, 99, 132, 0.2)");
         bgColor.add("rgba(255, 99, 132, 0.2)");
         barDataSet.setBackgroundColor(bgColor);
-        
+           
         List<String> borderColor = new ArrayList<>();
         borderColor.add("rgb(255, 99, 132)");
         borderColor.add("rgb(255, 99, 132)");
@@ -87,32 +75,57 @@ public class ChartController {
         borderColor.add("rgb(255, 99, 132)");
         barDataSet.setBorderColor(borderColor);
         barDataSet.setBorderWidth(1);
-        data.addChartDataSet(barDataSet);
         
+//        Eixo y barDataSet2
+        List<Number> values2 = new ArrayList<>();
+        values2.add(60);
+        values2.add(45);
+        values2.add(62);
+        values2.add(70);
+        values2.add(38);
+        values2.add(24);
+        values2.add(15);
+        barDataSet2.setData(values2);
+               
 //      Lista2/barras2
         List<String> bgColor2 = new ArrayList<>();
-        bgColor.add("rgba(200, 99, 100, 0.2)");
-        bgColor.add("rgba(200, 99, 100, 0.2)");
-        bgColor.add("rgba(200, 99, 100, 0.2)");
-        bgColor.add("rgba(200, 99, 100, 0.2)");
-        bgColor.add("rgba(200, 99, 100, 0.2)");
-        bgColor.add("rgba(200, 99, 100, 0.2)");
-        bgColor.add("rgba(200, 99, 100, 0.2)");
+        bgColor2.add("rgba(105, 99, 100, 0.2)");
+        bgColor2.add("rgba(105, 99, 100, 0.2)");
+        bgColor2.add("rgba(105, 99, 100, 0.2)");
+        bgColor2.add("rgba(105, 99, 100, 0.2)");
+        bgColor2.add("rgba(105, 99, 100, 0.2)");
+        bgColor2.add("rgba(105, 99, 100, 0.2)");
+        bgColor2.add("rgba(105, 99, 100, 0.2)");
         barDataSet2.setBackgroundColor(bgColor2);        
 
         List<String> borderColor2 = new ArrayList<>();
-        borderColor.add("rgb(200, 99, 100)");
-        borderColor.add("rgb(200, 99, 100)");
-        borderColor.add("rgb(200, 99, 100)");
-        borderColor.add("rgb(200, 99, 100)");
-        borderColor.add("rgb(200, 99, 100)");
-        borderColor.add("rgb(200, 99, 100)");
-        borderColor.add("rgb(200, 99, 100)");
+        borderColor2.add("rgb(105, 99, 100)");
+        borderColor2.add("rgb(105, 99, 100)");
+        borderColor2.add("rgb(105, 99, 100)");
+        borderColor2.add("rgb(105, 99, 100)");
+        borderColor2.add("rgb(105, 99, 100)");
+        borderColor2.add("rgb(105, 99, 100)");
+        borderColor2.add("rgb(105, 99, 100)");
         barDataSet2.setBorderColor(borderColor2);
         barDataSet2.setBorderWidth(1);
 
-        data.addChartDataSet(barDataSet);
+        //adiciona a legenda ao gráfico
+        data.addChartDataSet(barDataSet);        
         data.addChartDataSet(barDataSet2);
+
+        
+//        EIXO X DO GRÁFICO
+        List<String> labels = new ArrayList<>();
+        labels.add("January");
+        labels.add("February");
+        labels.add("March");
+        labels.add("April");
+        labels.add("May");
+        labels.add("June");
+        labels.add("July");
+        data.setLabels(labels);
+        barModel.setData(data);
+        
         
          //Options
         BarChartOptions options = new BarChartOptions();
@@ -158,17 +171,5 @@ public class ChartController {
     public void setBarModel(BarChartModel barModel) {
         this.barModel = barModel;
     }
-
-    public BarChartModel getBarModel2() {
-        return barModel2;
-    }
-
-    public void setBarModel2(BarChartModel barModel2) {
-        this.barModel2 = barModel2;
-    }
-    
-    
-
-    
     
 }
