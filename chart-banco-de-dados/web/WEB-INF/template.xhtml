@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>
+            <ui:insert name="titulo">Atividade Avaliativa1</ui:insert>
+        </title>
+    </h:head>
+
+    <h:body>
+        <p:growl id="growl"
+                 showDetail="true"
+                 showSummary="false" 
+                 life="3000" />
+
+        <ui:insert name="top">
+            <h:form>
+                <p:menubar>
+                    <p:menuitem value="Home" icon="pi pi-bookmark" outcome="/index.xhtml"/>
+                    <p:menuitem value="Carro" icon="pi pi-car" outcome="/cadCarro.xhtml"/>
+                     <p:submenu label="Serviço" icon="pi pi-book">
+                        <p:menuitem value="Cadastrar" icon="pi pi-check-square" outcome="/cadServico.xhtml"/>
+                        <p:menuitem value="Listar" icon="pi pi-list" outcome="/listaServico.xhtml"/>                            
+                    </p:submenu> 
+                    <p:menuitem value="Charts" icon="pi pi-bookmark" outcome="/chart.xhtml"/>
+                    
+                    <f:facet name="options">
+                        <h:outputText value="#{pessoaController.pessoaLogada.nome}"/>
+                    </f:facet>
+                </p:menubar>
+            </h:form>           
+        </ui:insert>
+
+        <ui:insert name="content"> </ui:insert>
+
+        <ui:insert name="bottom"> </ui:insert>
+
+    </h:body>
+
+</html>
