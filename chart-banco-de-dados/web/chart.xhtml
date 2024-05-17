@@ -8,8 +8,10 @@
 
     <ui:define name="content">
         <h:form>
+            
+            <p:commandButton value="Teste" action="#{vendasController.createBarModel()}" update="growl"/>
                        
-            <p:barChart model="#{chartController.barModel}" style="width: 100%; height: 500px;"/>
+            <p:barChart model="#{vendasController.barModel}" style="width: 100%; height: 500px;"/>
            
         </h:form>
     </ui:define>

@@ -1,6 +1,7 @@
 
 package br.edu.ifsp.controller;
 
+import br.edu.ifsp.dao.VendaDTO;
 import br.edu.ifsp.dao.VendasDAO;
 import br.edu.ifsp.modelo.Vendas;
 import jakarta.annotation.PostConstruct;
@@ -38,29 +39,32 @@ public class VendasController {
     @PostConstruct
     public void init(){
         createBarModel();
-    }      
-    
+    }   
+        
     public void createBarModel() {
         barModel = new BarChartModel();
         ChartData data = new ChartData();
         
         BarChartDataSet barDataSet = new BarChartDataSet();
-        barDataSet.setLabel("Cartão de crédito");
+        barDataSet.setLabel("Valores por mês");
         
-//        Lista2
-        BarChartDataSet barDataSet2 = new BarChartDataSet();
-        barDataSet2.setLabel("Mercado");
-
-//        Eixo y barDataSet
+        //valores por mês
         List<Number> values = new ArrayList<>();
-        values.add(65);
-        values.add(59);
-        values.add(80);
-        values.add(81);
-        values.add(56);
-        values.add(55);
-        values.add(40);
+        //valores do labels
+        List<String> labels = new ArrayList<>();
+        
+        //criar uma variável para passar o ano
+        for (VendaDTO vendaDTO: vendasDao.findByMonthDTO(2024)){
+            values.add(vendaDTO.getValor());
+            labels.add(Integer.toString(vendaDTO.getMes()));           
+        }         
+
+        //eixo Y
         barDataSet.setData(values);
+        
+        //Eixo X        
+        data.setLabels(labels);
+        barModel.setData(data);
               
         //barra 1
         List<String> bgColor = new ArrayList<>();
@@ -84,57 +88,10 @@ public class VendasController {
         barDataSet.setBorderColor(borderColor);
         barDataSet.setBorderWidth(1);
         
-//        Eixo y barDataSet2
-        List<Number> values2 = new ArrayList<>();
-        values2.add(60);
-        values2.add(45);
-        values2.add(62);
-        values2.add(70);
-        values2.add(38);
-        values2.add(24);
-        values2.add(15);
-        barDataSet2.setData(values2);
-               
-//      Lista2/barras2
-        List<String> bgColor2 = new ArrayList<>();
-        bgColor2.add("rgba(105, 99, 100, 0.2)");
-        bgColor2.add("rgba(105, 99, 100, 0.2)");
-        bgColor2.add("rgba(105, 99, 100, 0.2)");
-        bgColor2.add("rgba(105, 99, 100, 0.2)");
-        bgColor2.add("rgba(105, 99, 100, 0.2)");
-        bgColor2.add("rgba(105, 99, 100, 0.2)");
-        bgColor2.add("rgba(105, 99, 100, 0.2)");
-        barDataSet2.setBackgroundColor(bgColor2);        
-
-        List<String> borderColor2 = new ArrayList<>();
-        borderColor2.add("rgb(105, 99, 100)");
-        borderColor2.add("rgb(105, 99, 100)");
-        borderColor2.add("rgb(105, 99, 100)");
-        borderColor2.add("rgb(105, 99, 100)");
-        borderColor2.add("rgb(105, 99, 100)");
-        borderColor2.add("rgb(105, 99, 100)");
-        borderColor2.add("rgb(105, 99, 100)");
-        barDataSet2.setBorderColor(borderColor2);
-        barDataSet2.setBorderWidth(1);
-
+       
         //adiciona a legenda ao gráfico
-        data.addChartDataSet(barDataSet);        
-        data.addChartDataSet(barDataSet2);
+        data.addChartDataSet(barDataSet);         
 
-        
-//        EIXO X DO GRÁFICO
-        List<String> labels = new ArrayList<>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("June");
-        labels.add("July");
-        data.setLabels(labels);
-        barModel.setData(data);
-        
-        
          //Options
         BarChartOptions options = new BarChartOptions();
 //        options.setMaintainAspectRatio(false);
@@ -171,20 +128,22 @@ public class VendasController {
         barModel.setOptions(options);         
     }
     
-    public List<Vendas> vendasMes(Integer ano){
-        return vendasDao.findByAno(ano);    
+    public void vendasMes(){
+//        System.out.println(vendasDao.findAll());   
+
+//        for(Object[] obj: vendasDao.findByMonth()){
+//            System.out.println(obj[0]);
+//            System.out.println(obj[1]);
+//        
+//        }
+          
+          for(VendaDTO vendaDTO: vendasDao.findByMonthDTO(2024)){
+              System.out.println(vendaDTO);          
+          }
+
     }
     
-//    public List<Number> valoresVendasMes(Integer ano) {
-//        List<Vendas> vendas = vendasMes(ano);
-//        List<Number> valores = new ArrayList<>();
-//
-//        for (Vendas venda : vendas) {
-//            valores.add(venda.getValor());
-//        }
-//
-//        return valores;
-//    }
+
 
     public BarChartModel getBarModel() {
         return barModel;

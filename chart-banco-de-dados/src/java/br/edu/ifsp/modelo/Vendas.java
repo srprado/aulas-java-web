@@ -10,69 +10,58 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import java.io.Serializable;
-import java.math.BigDecimal;
+import java.util.Date;
 
 
 @Entity
 @Table(name = "vendas")
 @NamedQueries({
-    @NamedQuery(name = "Vendas.findByAno", query = "FROM Vendas v Where v.ano = :ano")
+    @NamedQuery(name = "Vendas.findAll", query = "FROM Vendas v")
 })
 public class Vendas implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo")
-    private int codigo;
+    private long codigo;
     
-    @Column(name = "ano", length = 4, nullable = false)
-    private Integer ano;
-    
-    @Column(name = "mes", length = 10, nullable = false)
-    private String mes;
+    @Column(name = "data", length = 4, nullable = false)
+    private Date data;
     
     @Column(name = "valor", nullable = false, precision = 8, scale = 2)
-    private BigDecimal valor;
+    private double valor;
 
     public Vendas() {
     }
 
-    public int getCodigo() {
+    public long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
 
-    public Integer getAno() {
-        return ano;
+    public Date getData() {
+        return data;
     }
 
-    public void setAno(Integer ano) {
-        this.ano = ano;
+    public void setData(Date data) {
+        this.data = data;
     }
 
-    public String getMes() {
-        return mes;
-    }
-
-    public void setMes(String mes) {
-        this.mes = mes;
-    }
-
-    public BigDecimal getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(BigDecimal valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + this.codigo;
+        int hash = 5;
+        hash = 53 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
         return hash;
     }
 
@@ -90,5 +79,10 @@ public class Vendas implements Serializable{
         final Vendas other = (Vendas) obj;
         return this.codigo == other.codigo;
     }
+
+    @Override
+    public String toString() {
+        return "Vendas{" + "codigo=" + codigo + ", data=" + data + ", valor=" + valor + '}';
+    } 
      
 }
