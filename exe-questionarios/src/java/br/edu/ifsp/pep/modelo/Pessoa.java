@@ -11,13 +11,14 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 
 @Entity
 @Table(name = "pessoa")
-public class Pessoa {
+public class Pessoa implements Serializable {
     
     @Id
     @Column(name = "cpf", length = 14, nullable = false)
@@ -38,8 +39,11 @@ public class Pessoa {
     @Column(name = "nivel_acesso", length = 15, nullable = false)
     private NivelAcesso nivel_acesso;
     
-    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "fk_pessoa_resposta", cascade = CascadeType.ALL)
     private List<Resposta> respostas;
+    
+    @OneToMany(mappedBy = "fk_pessoa_token", cascade = CascadeType.ALL)
+    private List<Token> token;
     
     public Pessoa() {
     }
@@ -103,7 +107,15 @@ public class Pessoa {
     public void setRespostas(List<Resposta> respostas) {
         this.respostas = respostas;
     }
-    
+
+    public List<Token> getToken() {
+        return token;
+    }
+
+    public void setToken(List<Token> token) {
+        this.token = token;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;

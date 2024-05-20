@@ -10,13 +10,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "questionario")
-public class Questionario {
+public class Questionario implements Serializable{
     
     private static final long serialVersionUID = 1L;
     @Id
@@ -36,12 +37,12 @@ public class Questionario {
     
     @Column(name = "data_fechamento", nullable = false)
     private LocalDateTime dataFechamento;
+            
+    @OneToMany(mappedBy = "fk_questionario_token", cascade = CascadeType.ALL)
+    private List<Token> token;
     
     @OneToMany(mappedBy = "questionario", cascade = CascadeType.ALL)
     private List<Pergunta> perguntas;
-    
-    @OneToMany(mappedBy = "questionarioRes", cascade = CascadeType.ALL)
-    private List<Resposta> respostas;
        
     public Questionario() {
     }
@@ -106,12 +107,12 @@ public class Questionario {
         this.perguntas = perguntas;
     }
 
-    public List<Resposta> getRespostas() {
-        return respostas;
+    public List<Token> getToken() {
+        return token;
     }
 
-    public void setRespostas(List<Resposta> respostas) {
-        this.respostas = respostas;
+    public void setToken(List<Token> token) {
+        this.token = token;
     }
     
     @Override

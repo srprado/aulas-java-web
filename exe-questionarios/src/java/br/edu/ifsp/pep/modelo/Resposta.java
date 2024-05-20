@@ -11,13 +11,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.io.Serializable;
 import java.util.Objects;
 
 
 @Entity
 @Table(name = "resposta")
 //Essa classe é a tabela intermediária do relacionamento N pra N entre Pessoa e Questionario
-public class Resposta {
+public class Resposta implements Serializable {
     
     private static final long serialVersionUID = 1L;
     @Id
@@ -31,17 +32,12 @@ public class Resposta {
     private String resposta;
     
     @ManyToOne
-    @JoinColumn(name = "FK_id_pergunta", nullable = false)
-    private Pergunta pergunta;
+    @JoinColumn(name = "fk_pergunta_resposta", nullable = false)
+    private Pergunta fk_pergunta_resposta;
     
     @ManyToOne
-    @JoinColumn(name = "FK_cpf", nullable = false)
-    private Pessoa pessoa;
-    
-    @ManyToOne
-    @JoinColumn(name = "FK_id_questionario", nullable = false)
-    private Questionario questionarioRes;
-            
+    @JoinColumn(name = "fk_pessoa_resposta", nullable = false)
+    private Pessoa fk_pessoa_resposta;
 
     public Resposta() {
     }
@@ -71,30 +67,22 @@ public class Resposta {
         this.resposta = resposta;
     }
 
-    public Pergunta getPergunta() {
-        return pergunta;
+    public Pergunta getFk_pergunta_resposta() {
+        return fk_pergunta_resposta;
     }
 
-    public void setPergunta(Pergunta pergunta) {
-        this.pergunta = pergunta;
+    public void setFk_pergunta_resposta(Pergunta fk_pergunta_resposta) {
+        this.fk_pergunta_resposta = fk_pergunta_resposta;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public Pessoa getFk_pessoa_resposta() {
+        return fk_pessoa_resposta;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setFk_pessoa_resposta(Pessoa fk_pessoa_resposta) {
+        this.fk_pessoa_resposta = fk_pessoa_resposta;
     }
-
-    public Questionario getQuestionarioRes() {
-        return questionarioRes;
-    }
-
-    public void setQuestionarioRes(Questionario questionarioRes) {
-        this.questionarioRes = questionarioRes;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 3;

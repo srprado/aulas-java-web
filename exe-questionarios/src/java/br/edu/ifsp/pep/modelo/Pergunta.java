@@ -13,13 +13,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 
 @Entity
 @Table(name = "pergunta")
-public class Pergunta {
+public class Pergunta implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,12 +34,15 @@ public class Pergunta {
     @Column(name = "tipo_pergunta", length = 20, nullable = false)
     private TipoPergunta tipoPergunta;
     
+    @OneToMany(mappedBy = "fk_pergunta_resposta", cascade = CascadeType.ALL)
+    private List<Resposta> respostas;
+    
     @ManyToOne
     @JoinColumn(name = "FK_id_questionario", nullable = false)
-    private Questionario questionario;
+    private Questionario questionario; 
     
-    @OneToMany(mappedBy = "pergunta", cascade = CascadeType.ALL)
-    private List<Resposta> respostas;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pergunta")
+    private List<OpcaoPergunta> opcaoPergunta;
    
     public Pergunta() {
     }
@@ -77,6 +81,14 @@ public class Pergunta {
         this.tipoPergunta = tipoPergunta;
     }
 
+    public List<Resposta> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
+    }
+
     public Questionario getQuestionario() {
         return questionario;
     }
@@ -85,14 +97,14 @@ public class Pergunta {
         this.questionario = questionario;
     }
 
-    public List<Resposta> getRespostas() {
-        return respostas;
+    public List<OpcaoPergunta> getOpcaoPergunta() {
+        return opcaoPergunta;
     }
 
-    public void setRespostas(List<Resposta> respostas) {
-        this.respostas = respostas;
+    public void setOpcaoPergunta(List<OpcaoPergunta> opcaoPergunta) {
+        this.opcaoPergunta = opcaoPergunta;
     }
-    
+            
     @Override
     public int hashCode() {
         int hash = 5;
