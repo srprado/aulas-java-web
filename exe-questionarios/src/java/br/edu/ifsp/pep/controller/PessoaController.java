@@ -9,7 +9,6 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.Serializable;
 
-
 @Named
 @SessionScoped
 public class PessoaController implements Serializable{

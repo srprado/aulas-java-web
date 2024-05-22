@@ -11,25 +11,29 @@ import jakarta.inject.Inject;
 import java.io.IOException;
 
 public class Autorizacao implements PhaseListener {
-    
+
     @Inject
     private PessoaController pessoaController;
 
     @Override
     public void afterPhase(PhaseEvent event) {
-       System.out.println("After: " + event.getPhaseId());
-       
+        System.out.println("After: " + event.getPhaseId());
+
         FacesContext ctx = event.getFacesContext();
         String pagina = ctx.getViewRoot().getViewId();
         System.out.println(pagina);
         //Validação
         Pessoa pessoaAutenticada = pessoaController.getPessoaLogada();
-        
-        if(pagina.startsWith("/administrador") && (pessoaAutenticada==null ||
-                                                   pessoaAutenticada.getNivel_acesso().equals(NivelAcesso.Comum)))
+
+        if (pagina.startsWith("/administrador") && (pessoaAutenticada == null
+                || pessoaAutenticada.getNivel_acesso().equals(NivelAcesso.Comum))) {
             redirecionar(ctx, "/acesso-negado.xhtml");
+        }
+        if(pagina.startsWith("/questionarios") && (pessoaAutenticada==null)){
+            redirecionar(ctx, "/acesso-negado.xhtml");
+        }
     }
-    
+
     @Override
     public void beforePhase(PhaseEvent event) {
         //monitorar algo antes da fase

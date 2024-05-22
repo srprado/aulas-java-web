@@ -25,15 +25,14 @@ public class Token implements Serializable{
     private String chave;
     //atribuir valor false ao gerar os token
     @Column(name = "status", nullable = false)
-    private boolean status;
-    
+    private boolean status;    
     //o nome do mappedBy é o msm do atributo em Java;
     @ManyToOne
-    @JoinColumn(name = "fk_pessoa_token", nullable = false)
+    @JoinColumn(name = "fk_pessoa_token", nullable = true)
     private Pessoa fk_pessoa_token;
     
     @ManyToOne
-    @JoinColumn(name = "fk_questionario_token", nullable = false)
+    @JoinColumn(name = "fk_questionario_token", nullable = true)
     private Questionario fk_questionario_token;
 
     public Token() {

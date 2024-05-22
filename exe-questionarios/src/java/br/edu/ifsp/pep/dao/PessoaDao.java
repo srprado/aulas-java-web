@@ -26,8 +26,13 @@ public class PessoaDao {
             return query.getSingleResult();
         } catch (NoResultException nre) {
             return null;
-        }
+        }    
+    }
     
+    public Pessoa findUserName(String name){
+        return em.createQuery("SELECT p FROM  Pessoa p WHERE p.nome = :name", Pessoa.class)
+                .setParameter("nome", name)
+                .getSingleResult();
     }
     
 }

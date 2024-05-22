@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
@@ -17,6 +18,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "questionario")
+@NamedQuery(name = "Questionario.findByName", query = "FROM Questionario q WHERE q.titulo = :titulo")
+
 public class Questionario implements Serializable{
     
     private static final long serialVersionUID = 1L;
@@ -26,7 +29,7 @@ public class Questionario implements Serializable{
     private Integer idQuestionario;
     
     @Column(name = "titulo", length = 50, nullable = false)
-    private String tituto;
+    private String titulo;
     
     @Lob
     @Column(name = "descricao", nullable = false)
@@ -53,7 +56,7 @@ public class Questionario implements Serializable{
 
     public Questionario(Integer idQuestionario, String tituto, String descricao, LocalDateTime dataAbertura, LocalDateTime dataFechamento) {
         this.idQuestionario = idQuestionario;
-        this.tituto = tituto;
+        this.titulo = tituto;
         this.descricao = descricao;
         this.dataAbertura = dataAbertura;
         this.dataFechamento = dataFechamento;
@@ -67,14 +70,14 @@ public class Questionario implements Serializable{
         this.idQuestionario = idQuestionario;
     }
 
-    public String getTituto() {
-        return tituto;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setTituto(String tituto) {
-        this.tituto = tituto;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
-
+    
     public String getDescricao() {
         return descricao;
     }

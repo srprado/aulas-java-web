@@ -11,6 +11,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
@@ -20,6 +22,9 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "pergunta")
+@NamedQueries({
+    @NamedQuery(name = "Pergunta.findByName", query = "FROM Pergunta p WHERE p.tituloPergunta = :titulo")
+})
 public class Pergunta implements Serializable{
     
     @Id

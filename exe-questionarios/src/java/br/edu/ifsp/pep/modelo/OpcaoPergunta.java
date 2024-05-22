@@ -3,6 +3,8 @@ package br.edu.ifsp.pep.modelo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -14,6 +16,7 @@ import java.io.Serializable;
 public class OpcaoPergunta implements Serializable{
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo",length = 8, unique = true)
     private int codigo;
     
@@ -21,7 +24,7 @@ public class OpcaoPergunta implements Serializable{
     private String opcao;
     
     @ManyToOne
-    @JoinColumn(name = "fk_pergunta")
+    @JoinColumn(name = "fk_pergunta", nullable = false)
     private Pergunta pergunta;
 
     public OpcaoPergunta() {
