@@ -3,6 +3,7 @@ package br.edu.ifsp.pep.listener;
 import br.edu.ifsp.pep.controller.PessoaController;
 import br.edu.ifsp.pep.modelo.NivelAcesso;
 import br.edu.ifsp.pep.modelo.Pessoa;
+import jakarta.enterprise.inject.spi.CDI;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.PhaseEvent;
 import jakarta.faces.event.PhaseId;
@@ -17,11 +18,15 @@ public class Autorizacao implements PhaseListener {
 
     @Override
     public void afterPhase(PhaseEvent event) {
-        System.out.println("After: " + event.getPhaseId());
+//        System.out.println("After: " + event.getPhaseId());
 
         FacesContext ctx = event.getFacesContext();
         String pagina = ctx.getViewRoot().getViewId();
-        System.out.println(pagina);
+//        System.out.println(pagina);
+        // Obtendo o bean gerenciado pelo CDI manualmente
+        
+
+
         //Validação
         Pessoa pessoaAutenticada = pessoaController.getPessoaLogada();
 
@@ -37,7 +42,7 @@ public class Autorizacao implements PhaseListener {
     @Override
     public void beforePhase(PhaseEvent event) {
         //monitorar algo antes da fase
-        System.out.println("Antes da fase: " + event.getPhaseId());
+//        System.out.println("Antes da fase: " + event.getPhaseId());
 
     }
 

@@ -23,7 +23,8 @@ import java.util.Objects;
 @Entity
 @Table(name = "pergunta")
 @NamedQueries({
-    @NamedQuery(name = "Pergunta.findByName", query = "FROM Pergunta p WHERE p.tituloPergunta = :titulo")
+    @NamedQuery(name = "Pergunta.findByName", query = "FROM Pergunta p WHERE p.tituloPergunta = :titulo"),
+    @NamedQuery(name = "Pergunta.findById", query = "FROM Pergunta p WHERE p.idPergunta = :idPergunta")
 })
 public class Pergunta implements Serializable{
     

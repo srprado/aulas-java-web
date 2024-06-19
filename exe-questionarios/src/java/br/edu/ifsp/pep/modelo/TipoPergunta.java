@@ -2,6 +2,6 @@
 package br.edu.ifsp.pep.modelo;
 
 public enum TipoPergunta {
-    Livre, Multipla_Escolha, Opcao
+    Multipla_Escolha, Opcao
     
 }

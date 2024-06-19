@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -18,8 +19,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "questionario")
-@NamedQuery(name = "Questionario.findByName", query = "FROM Questionario q WHERE q.titulo = :titulo")
-
+@NamedQueries({
+    @NamedQuery(name = "Questionario.findAll", query = "FROM Questionario q"),
+    @NamedQuery(name = "Questionario.findByName", query = "FROM Questionario q WHERE q.titulo = :titulo"),
+    @NamedQuery(name = "Questionario.findById", query = "FROM Questionario q WHERE q.idQuestionario = :idQuestionario")
+})
 public class Questionario implements Serializable{
     
     private static final long serialVersionUID = 1L;
@@ -54,9 +58,9 @@ public class Questionario implements Serializable{
         this.idQuestionario = idQuestionario;
     }
 
-    public Questionario(Integer idQuestionario, String tituto, String descricao, LocalDateTime dataAbertura, LocalDateTime dataFechamento) {
+    public Questionario(Integer idQuestionario, String titulo, String descricao, LocalDateTime dataAbertura, LocalDateTime dataFechamento) {
         this.idQuestionario = idQuestionario;
-        this.titulo = tituto;
+        this.titulo = titulo;
         this.descricao = descricao;
         this.dataAbertura = dataAbertura;
         this.dataFechamento = dataFechamento;

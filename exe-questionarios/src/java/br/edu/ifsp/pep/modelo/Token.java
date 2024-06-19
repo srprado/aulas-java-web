@@ -23,7 +23,7 @@ public class Token implements Serializable{
     
     @Column(name = "chave", length = 10, nullable = false)
     private String chave;
-    //atribuir valor false ao gerar os token
+    //atribuir valor false ao gerar os token, true é quando foi usado
     @Column(name = "status", nullable = false)
     private boolean status;    
     //o nome do mappedBy é o msm do atributo em Java;

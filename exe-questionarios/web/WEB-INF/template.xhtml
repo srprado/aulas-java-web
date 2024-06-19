@@ -23,20 +23,25 @@
             <h:form>
                 <p:menubar>
                     <p:menuitem value="Home" icon="pi pi-home" outcome="/index.xhtml"/>
+                    <p:divider layout="vertical"/>
                     <p:menuitem value="Login" icon="pi pi-sign-in" outcome="/login.xhtml"/>
-                    <p:submenu label="Questionários" icon="pi pi-book">
-                        <p:menuitem value="Questionário 1" outcome="/questionarios/questionario1.xhtml"/>
-                        <p:menuitem value="Questionário 2" outcome="/questionarios/questionario2.xhtml"/>
-                        <p:menuitem value="Questionário 3" outcome="/questionarios/questionario3.xhtml"/>
+                    <p:divider layout="vertical"/>
+                    <p:menuitem value="Responder Questionários" icon="pi pi-book" outcome="/questionarios/respQuestionarios.xhtml"/>   
+                    <p:divider layout="vertical"/>
+                    <p:submenu label="Administrador" icon="pi pi-crown">
+                        <p:menuitem value="Cadastrar usuários" icon="pi pi-user-plus" outcome="/administrador/cadPessoas.xhtml"/>
+                        <p:menuitem value="Análises" icon="pi pi-chart-bar" outcome="/administrador/analises.xhtml"/> 
+                        <p:submenu label="Gerenciar Questionários" icon="pi pi-cog">
+                            <p:menuitem value="Cadastrar" outcome="/administrador/cadQuestionario.xhtml"/>
+                            <p:menuitem value="Listar" outcome="/administrador/listarQuestionarios.xhtml"/>                            
+                        </p:submenu>                        
                     </p:submenu>
-                    
-                    <p:menuitem value="Cadastro" icon="pi pi-user-plus" outcome="/administrador/cadPessoas.xhtml"/>
-                    <p:menuitem value="Análises" icon="pi pi-chart-bar" outcome="/administrador/analises.xhtml"/> 
-                     <p:menuitem value="Desconectar" action="#{pessoaController.desconectar()}" icon="pi pi-sign-out"
-                                update="@all"/>   
-                         
+
                     <f:facet name="options">
-                        <h:outputText value="#{pessoaController.pessoaLogada.nome}"/>
+                        <div class="ui-input-icon-left mr-2" style="display: inline-block; margin-right: 10px;">
+                            <p:outputLabel value="#{pessoaController.pessoaLogada.nome}"/>        
+                        </div>
+                        <p:commandButton icon="pi pi-sign-out" action="#{pessoaController.desconectar()}" update="@all"/>
                     </f:facet>
                 </p:menubar>
             </h:form>           

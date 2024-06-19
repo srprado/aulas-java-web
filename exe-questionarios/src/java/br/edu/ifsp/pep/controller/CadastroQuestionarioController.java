@@ -9,7 +9,6 @@ import br.edu.ifsp.pep.modelo.Pergunta;
 import br.edu.ifsp.pep.modelo.Questionario;
 import br.edu.ifsp.pep.modelo.TipoPergunta;
 import br.edu.ifsp.pep.util.Messages;
-import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -72,15 +71,13 @@ public class CadastroQuestionarioController {
             p4.setTipoPergunta(TipoPergunta.Opcao);
             p4.setQuestionario(tituloQuestionario);
             
-            p5.setTituloPergunta("O que mais gosta nas festas juninas?");
-            p5.setTipoPergunta(TipoPergunta.Livre);
-            p5.setQuestionario(tituloQuestionario);
+           
             
             perguntaDao.cadastrar(p1);
             perguntaDao.cadastrar(p2);
             perguntaDao.cadastrar(p3);
             perguntaDao.cadastrar(p4);
-            perguntaDao.cadastrar(p5);           
+                      
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getCause().getMessage());

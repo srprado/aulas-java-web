@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
@@ -27,9 +26,12 @@ public class Resposta implements Serializable {
     @Column(name = "id_resposta")
     private Integer idResposta;
     
-    @Lob
-    @Column(name = "resposta", length = 50, nullable = false)
-    private String resposta;
+//    @Lob
+//    @Column(name = "resposta", length = 50, nullable = false)
+//    private String resposta;
+    @ManyToOne
+    @JoinColumn(name = "fk_opcao_resposta", nullable = false)
+    private OpcaoPergunta respostaOp;
     
     @ManyToOne
     @JoinColumn(name = "fk_pergunta_resposta", nullable = false)
@@ -46,9 +48,9 @@ public class Resposta implements Serializable {
         this.idResposta = idResposta;
     }
 
-    public Resposta(Integer idResposta, String resposta) {
+    public Resposta(Integer idResposta, OpcaoPergunta respostaOp) {
         this.idResposta = idResposta;
-        this.resposta = resposta;
+        this.respostaOp = respostaOp;
     }
 
     public Integer getIdResposta() {
@@ -59,12 +61,12 @@ public class Resposta implements Serializable {
         this.idResposta = idResposta;
     }
 
-    public String getResposta() {
-        return resposta;
+    public OpcaoPergunta getRespostaOp() {
+        return respostaOp;
     }
 
-    public void setResposta(String resposta) {
-        this.resposta = resposta;
+    public void setRespostaOp(OpcaoPergunta respostaOp) {
+        this.respostaOp = respostaOp;
     }
 
     public Pergunta getFk_pergunta_resposta() {

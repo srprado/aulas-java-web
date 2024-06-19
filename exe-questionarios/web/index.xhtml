@@ -1,22 +1,27 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/WEB-INF/template.xhtml"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:h="jakarta.faces.html">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="content">
-        <h:form>
-            <h1>Página inicial do site</h1>  
-            <p:commandButton value="Cadastrar Questionário1" action="#{cadastroQuestionarioController.cadastroQuestionario1()}" update="growl"/>
-            <br/><br/>
-            <p:commandButton value="Cadastrar Questionário2" action="#{cadastroQuestionarioController.cadastroQuestionario2()}" update="growl"/>
-            <br/><br/>
-            <p:commandButton value="Cadastrar Questionário3" action="#{cadastroQuestionarioController.cadastroQuestionario3()}" update="growl"/>
+    <h:body>
+        <ui:composition template="/WEB-INF/template.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h1>Página inicial do site</h1>  
+                    <p:commandButton value="Cadastrar Questionário1" action="#{cadastroQuestionarioController.cadastroQuestionario1()}" update="growl"/>
+                    <br/><br/>
+                    <p:commandButton value="Cadastrar Questionário2" action="#{cadastroQuestionarioController.cadastroQuestionario2()}" update="growl"/>
+                    <br/><br/>
+                    <p:commandButton value="Cadastrar Questionário3" action="#{cadastroQuestionarioController.cadastroQuestionario3()}" update="growl"/>
+                    <br/><br/>
+                    <p:commandButton value="Cadastrar Administrador e Comum" action="#{pessoaController.cadastroInicial()}" update="growl"/>
 
-
-        </h:form>
-    </ui:define>
-
-</ui:composition>
+                    <br/><br/>
+                    <p:commandButton value="listar perguntas Q1" action="#{questionarioController.listarPerguntas()}" update="growl"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>        
+    </h:body>
+</html>
