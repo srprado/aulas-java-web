@@ -1,6 +1,7 @@
 package br.edu.ifsp.pep.dao;
 
 import br.edu.ifsp.pep.modelo.Questionario;
+import br.edu.ifsp.pep.modelo.Token;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -60,20 +61,16 @@ public class QuestionarioDao {
             return null;
         }
     }
-//            public List<Carro> findAll() {
-    //        return em.createNamedQuery("Carro.findAll", Carro.class)
-    //                .getResultList();
-    //    }
+    
+    public List<Token> SeTokenEntaoResposta(Questionario questionario){
+        TypedQuery<Token> query = em.createQuery(
+            "SELECT t FROM Token t WHERE t.fk_questionario_token = :questionario", Token.class);
+        query.setParameter("questionario", questionario);
+        try {
+            return query.getResultList();
+        } catch (NoResultException nre) {
+            return null;
+        }                
+    }
 
-    //            public Pessoa findUser(String login, String senha){
-    //        TypedQuery<Pessoa> query = em.createQuery(
-    //            "Select p FROM Pessoa p WHERE p.login = :login AND p.senha = :senha", Pessoa.class);
-    //        query.setParameter("login", login);
-    //        query.setParameter("senha", senha);
-    //        try {
-    //            return query.getSingleResult();
-    //        } catch (NoResultException nre) {
-    //            return null;
-    //        }    
-    //    }
 }

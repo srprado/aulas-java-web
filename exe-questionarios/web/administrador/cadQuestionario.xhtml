@@ -14,6 +14,7 @@
                         <p:outputLabel for="@next" value="Título"/>
                         <p:inputText id="titulo" value="#{questionarioController.questionario.titulo}"
                                      required="true" requiredMessage="Informe o título."/>
+                        
                         <ui:remove>
                             <p:outputLabel for="@next" value="Data de abertura"/>
                         <p:inputText id="data_abertura" value="#{questionarioController.questionario.dataAbertura}"
@@ -33,19 +34,12 @@
                         <p:outputLabel for="@next" value="Data de encerramento" />
                         <p:datePicker id="data_encerramento" value="#{questionarioController.questionario.dataFechamento}" showTime="true" 
                                       required="true" requiredMessage="Informe a data de encerramento."/>
-					
-                        
-                        
-
                         <p:outputLabel for="@next" value="Descrição"/>
                         <p:inputTextarea id="descricao" value="#{questionarioController.questionario.descricao}"
                                      required="true" requiredMessage="Informe a descrição do questionário"/>
                     </p:panelGrid>
                     <br/>
                     <p:commandButton value="Cadastrar" action="#{questionarioController.cadastrarQuestionario()}" update="growl"/>
-
-
-
                 </h:form>
             </ui:define>
         </ui:composition>        

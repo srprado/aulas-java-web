@@ -18,23 +18,34 @@ public class RespostaDao {
         em.persist(resposta);
     }
 
-    public List<Object[]> findRespostaCountByPergunta(Pergunta pergunta) {
-        TypedQuery<Object[]> query = em.createQuery(
-                "SELECT r.respostaOp.opcao, COUNT(r) "
-                + "FROM Resposta r "
-                + "WHERE r.fk_pergunta_resposta = :pergunta "
-                + "GROUP BY r.respostaOp.opcao", Object[].class);
-        query.setParameter("pergunta", pergunta);
-        return query.getResultList();
-    }
+//    public List<Object[]> findRespostaCountByPergunta(Pergunta pergunta) {
+//        TypedQuery<Object[]> query = em.createQuery(
+//                "SELECT r.respostaOp.opcao, COUNT(r) "
+//                + "FROM Resposta r "
+//                + "WHERE r.fk_pergunta_resposta = :pergunta "
+//                + "GROUP BY r.respostaOp.opcao", Object[].class);
+//        query.setParameter("pergunta", pergunta);
+//        return query.getResultList();
+//    }
 
     public List<RespostaDTO> findCountByOpcaoAndPergunta(Integer idPergunta) {
         TypedQuery<RespostaDTO> query = em.createQuery(
-                "SELECT NEW br.edu.ifsp.pep.dao.RespostaDTO(r.respostaOp.opcao, COUNT(r)) "
+                "SELECT NEW br.edu.ifsp.pep.dao.RespostaDTO(r.respostaOp, COUNT(r)) "
                 + "FROM Resposta r "
                 + "WHERE r.fk_pergunta_resposta.idPergunta = :idPergunta "
-                + "GROUP BY r.respostaOp.opcao", RespostaDTO.class);
+                + "GROUP BY r.respostaOp", RespostaDTO.class);
         query.setParameter("idPergunta", idPergunta);
         return query.getResultList();
+    }
+    
+    public List<RespostaDTO> findByQuestionDTO(Integer idPergunta){
+        TypedQuery<RespostaDTO> query = em.createQuery(
+                "SELECT NEW br.edu.ifsp.pep.dao.RespostaDTO(r.respostaOp, COUNT(r)) "
+                + "FROM Resposta r "
+                + "WHERE r.fk_pergunta_resposta.idPergunta = :idPergunta "
+                + "GROUP BY r.respostaOp", RespostaDTO.class);
+        query.setParameter("idPergunta", idPergunta);
+        return query.getResultList();
+    
     }
 }

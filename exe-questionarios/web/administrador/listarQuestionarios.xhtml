@@ -10,53 +10,47 @@
         <ui:composition template="/WEB-INF/template.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <h1>Lista questionários</h1>
-                    <p:selectOneMenu id="option" value="#{questionarioController.questionarioSelecionado}">                      
-                        <f:selectItems value="#{questionarioController.listarQuestionarios()}"
-                                       var="item" itemLabel="#{item.titulo}"
-                                       itemValue="#{item}"/>                        
-                    </p:selectOneMenu>
-                    <p:commandButton value="Excluir" action="#{questionarioController.excluir()}" update="growl"/>                  
+                    <h1>Questionários</h1>
+                    <p:dataTable id="tabela" var="item" value="#{questionarioController.listarQuestionarios()}"                                    
+                                 rowKey="#{item.idQuestionario}" selection="#{questionarioController.questionarioSelecionado}"
+                                 selectionMode="single" paginator="true"
+                                 paginatorPosition="bottom" rows="10">
 
-                    
-                        <p:dataTable id="tabela" var="item" value="#{questionarioController.listarQuestionarios()}"                                    
-                                     rowKey="#{item.idQuestionario}" selection="#{questionarioController.questionarioSelecionado}"
-                                     selectionMode="single" paginator="true"
-                                     paginatorPosition="bottom" rows="10">
-                            
-                            <p:column headerText="Título">
-                                <h:outputText value="#{item.titulo}" />
-                            </p:column>
+                        <p:column headerText="Título">
+                            <h:outputText value="#{item.titulo}" />
+                        </p:column>
 
-                            <p:column headerText="Data de abertura">
-                                <h:outputText value="#{item.dataAbertura}">
-                                    <f:convertDateTime type="localDate" pattern="dd/MM/yyyy HH:mm"/>
-                                </h:outputText>
-                            </p:column>
+                        <p:column headerText="Data de abertura">
+                            <h:outputText value="#{item.dataAbertura}">
+                                <f:convertDateTime type="localDate" pattern="dd/MM/yyyy HH:mm"/>
+                            </h:outputText>
+                        </p:column>
 
-                            <!--outro campo de data para mostrar como funciona o filtro--> 
-                            <p:column field="data" headerText="Data encerramento" filterMatchMode="between">
-                                <f:facet name="filter">
-                                    <p:datePicker selectionMode="range" onchange="PF('tabela').filter()"/>
-                                </f:facet>
-                                <h:outputText value="#{item.dataFechamento}">
-                                    <f:convertDateTime type="localDate" pattern="dd/MM/yyyy HH:mm"/>
-                                </h:outputText>
-                            </p:column>
-                            <p:column headerText="Descrição">
-                                <h:outputText value="#{item.descricao}" />
-                            </p:column>
+                        <!--outro campo de data para mostrar como funciona o filtro--> 
+                        <p:column field="data" headerText="Data encerramento" filterMatchMode="between">
+                            <f:facet name="filter">
+                                <p:datePicker selectionMode="range" onchange="PF('tabela').filter()"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataFechamento}">
+                                <f:convertDateTime type="localDate" pattern="dd/MM/yyyy HH:mm"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Descrição">
+                            <h:outputText value="#{item.descricao}" />
+                        </p:column>
 
-                            <p:column headerText="Ação">
+                        <p:column headerText="Ação">
 
-                                <div class="ui-input-icon-left mr-2" style="display: inline-block; margin-right: 10px;">
-                                    <p:commandButton value="Listar Perguntas" action="#{questionarioController.listarPerguntas(item.idQuestionario)}"/> 
-                                    <p:commandButton value="Pagina Perguntas" action="#{questionarioController.paginaListarPerguntas()}"/> 
-                                </div>
-                                <p:commandButton value="Excluir" action="#{questionarioController.excluir()}" update="growl tabela" />                                
-                            </p:column>
-                        </p:dataTable>  
-                    </h:form>               
+                            <div class="ui-input-icon-left mr-2" style="display: inline-block; margin-right: 10px;">
+                                <p:commandButton value="Cadastrar Perguntas" action="#{questionarioController.paginaCadastrarPergunta(item)}"/>    
+                            </div>
+                            <p:commandButton value="Listar Perguntas" action="#{questionarioController.paginaListarPerguntas()}"/>                                   
+                            <br/>
+                            <p:commandButton value="Excluir" action="#{questionarioController.excluir()}" update="growl tabela" />                                
+
+                        </p:column>
+                    </p:dataTable>  
+                </h:form>               
             </ui:define>
         </ui:composition>        
     </h:body>

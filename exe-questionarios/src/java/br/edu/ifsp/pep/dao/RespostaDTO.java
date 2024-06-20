@@ -1,21 +1,24 @@
 
 package br.edu.ifsp.pep.dao;
 
+import br.edu.ifsp.pep.modelo.OpcaoPergunta;
+
 public class RespostaDTO {
     
-    private String opcao;
+    private OpcaoPergunta OpcaoPergunta;
     
     private Long quantidade;
 
     //A ordem dos parâmetros deve ser igual ao retorno da consulta SQL
-    public RespostaDTO(String opcao, Long quantidade) {
-        this.opcao = opcao;
+
+    public RespostaDTO(OpcaoPergunta OpcaoPergunta, Long quantidade) {
+        this.OpcaoPergunta = OpcaoPergunta;
         this.quantidade = quantidade;
     }
-   
-    public String getOpcao() {
-        return opcao;
-    }
+
+    public OpcaoPergunta getOpcaoPergunta() {
+        return OpcaoPergunta;
+    }   
 
     public Long getQuantidade() {
         return quantidade;
@@ -23,6 +26,10 @@ public class RespostaDTO {
 
     @Override
     public String toString() {
-        return "RespostaDTO{" + "opcao=" + opcao + ", quantidade=" + quantidade + '}';
-    }   
+        return "RespostaDTO{" + "OpcaoPergunta=" + OpcaoPergunta + ", quantidade=" + quantidade + '}';
+    }
+
+    
+    
+       
 }

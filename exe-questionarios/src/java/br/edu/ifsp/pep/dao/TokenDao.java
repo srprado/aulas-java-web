@@ -30,8 +30,7 @@ public class TokenDao {
             return query.getResultList();
         } catch (NoResultException nre) {
             return null;
-        }
-                
+        }                
     }
-    
+       
 }

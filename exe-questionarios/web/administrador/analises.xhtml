@@ -15,15 +15,16 @@
                         <f:selectItem itemLabel="Selecione um questionário..." itemValue="" noSelectionOption="true" />
                         <f:selectItems value="#{analiseController.listarQuestionarios()}"
                                        var="item" itemLabel="#{item.titulo}"
-                                       itemValue="#{item}"/>                        
+                                       itemValue="#{item}"/> 
                     </p:selectOneMenu>
 
                     <div class="ui-input-icon-left mr-2" style="display: inline-block; margin-right: 10px;">
-                        <p:commandButton value="Gerar análises" action="#{analiseController.createBarModel}" update="growl barChart"/>   
+                        <p:commandButton value="Gerar análises" action="#{analiseController.createBarModel()}" update="growl @form"/>   
                     </div>
-
-                    <p:barChart id="barChart" model="#{analiseController.barModel}" style="width: 100%; height: 500px;"/> 
-
+                    <ui:repeat id="graficos" value="#{analiseController.listaBarModel}" var="item">
+                        <br/>
+                        <p:barChart id="Chart" model="#{item}" style="width: 100%; height: 500px;"/> 
+                    </ui:repeat>
                 </h:form>
             </ui:define>
         </ui:composition>
